@@ -1,0 +1,1966 @@
+[
+    {
+        "id": "70ef421ef9557c1e",
+        "type": "tab",
+        "label": "Zabezpečovací systém",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ebc62990157cd56d",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "senzor 1",
+        "func": "if(msg.payload == \"PohybNaSenzoru1\"){\n    msg.payload = '<font color=\"#ff0000\"><i class=\"fa fa-male\"></i></font>';\n    return msg;\n}\nelse if(msg.payload == \"KlidNaSenzoru1\"){\n    msg.payload = '<font color=\"#00cc00\"><i class=\"fa fa-check\"></i></font>';\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 160,
+        "wires": [
+            [
+                "ca446a413708b712"
+            ]
+        ]
+    },
+    {
+        "id": "bc83a9ac3efab8f7",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Poplach",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 700,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ca446a413708b712",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Senzor 1",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 700,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "15135e1f6f0a093b",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Senzor 2",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "8cbfd07f4c82bf3d",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "senzor 2",
+        "func": "if(msg.payload == \"PohybNaSenzoru2\"){\n    msg.payload = '<font color=\"#ff0000\"><i class=\"fa fa-male\"></i></font>';\n    return msg;\n}\nelse if(msg.payload == \"KlidNaSenzoru2\"){\n    msg.payload = '<font color=\"#00cc00\"><i class=\"fa fa-check\"></i></font>';\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 200,
+        "wires": [
+            [
+                "15135e1f6f0a093b"
+            ]
+        ]
+    },
+    {
+        "id": "967dab290feb74e4",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Stav alarmu",
+        "func": "if(msg.payload == \"AlarmAktivni\"){\n    msg.payload = '<font color=\"#ff0000\"><i class=\"fa fa-lock\"></i></font>';\n    flow.set(\"stav\",msg.payload)\n    return msg;\n}\nelse if(msg.payload == \"AlarmNeaktivni\"){\n    msg.payload = '<font color=\"#00cc00\"><i class=\"fa fa-unlock\"></i></font>';\n    flow.set(\"stav\",msg.payload)\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "ba640d77d22f1a89"
+            ]
+        ]
+    },
+    {
+        "id": "263955a4f91dc9dd",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Stav poplachu",
+        "func": "if(msg.payload == \"PoplachAktivni\"){\n    msg.payload = '<font color=\"#ff6600\"><i class=\"fa fa-exclamation-triangle\" aria-hidden=\"true\"></i></font>';\n    msg.mail = \"PoplachAktivni\"\n    flow.set(\"poplach\",msg.payload)\n    return msg;\n}\nelse if(msg.payload == \"PoplachNeaktivni\"){\n    msg.payload = \"\";\n    msg.mail = \"PoplachNeaktivni\"\n    flow.set(\"poplach\",msg.payload)\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 280,
+        "wires": [
+            [
+                "caa716e8d65a818f",
+                "bc83a9ac3efab8f7"
+            ]
+        ]
+    },
+    {
+        "id": "f4d83ce82dbc350a",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "27e57e1ea4f0f3cd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Aktivovat",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "AktivovatAlarm",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 700,
+        "y": 960,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "53a1bfbf7fd418e9",
+        "type": "ui_text_input",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "label": "MQTT msg",
+        "tooltip": "MQTT msg",
+        "group": "d1f48a7f779e2ee0",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "mode": "text",
+        "delay": "0",
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 430,
+        "y": 1560,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "fda51c9dba62d328",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Clear",
+        "func": "if(msg.payload == \"CLEAR\"){\n    msg.payload = \"\";\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 320,
+        "wires": [
+            [
+                "bc83a9ac3efab8f7",
+                "15135e1f6f0a093b",
+                "ca446a413708b712",
+                "ba640d77d22f1a89",
+                "f63bf928a4d57903",
+                "b65390e7deedce73"
+            ]
+        ]
+    },
+    {
+        "id": "155ae78c8c218e91",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Vyčistit status",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "CLEAR",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1520,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "1f07d1449e11397b",
+        "type": "ui_ui_control",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "events": "all",
+        "x": 700,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0badf2e4967e4d74",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Nastaveni dashboardu",
+        "func": "if(msg.payload==\"AlarmAktivni\"){\n    msg.payload = {\n        \"group\": {\n            \"hide\": [\n                \"Alarm_M5Stack_System\"\n                ], \n                \"show\": [\n                    \"Alarm_M5Stack_Klavesnice\"\n                    ]\n        }\n    }\nreturn msg;\n}\n\nelse if(msg.payload==\"AlarmNeaktivni\"){\n    msg.payload = {\n        \"group\": {\n            \"show\": [\n                \"Alarm_M5Stack_System\"\n                ], \n                \"hide\": [\n                    \"Alarm_M5Stack_Klavesnice\"\n                    ]\n        }\n    }\nreturn msg;\n}\n\nelse if(msg.payload==\"CLEAR\"){\n    msg.payload = {\n        \"group\": {\n            \"show\": [\n                \"Alarm_M5Stack_System\"\n                ], \n                \"hide\": [\n                    \"Alarm_M5Stack_Klavesnice\"\n                    ]\n        }\n    }\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 500,
+        "y": 120,
+        "wires": [
+            [
+                "1f07d1449e11397b"
+            ]
+        ]
+    },
+    {
+        "id": "3a8be93b2f975fb8",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 2,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 620,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "c40731a60741292d",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 3,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 660,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "29d4d7760b408076",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 4,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "3",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 700,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "fd054ade806e82f6",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 5,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "4",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "91c3f9511b7ce1c6",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 6,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "5",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "5",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 780,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "02abc561056d5a73",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 7,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "6",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "6",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 820,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "70cfc6d28db615e1",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 8,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "7",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "7",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 860,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "1d6a137b90633b2e",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 9,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "8",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "8",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 900,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "8a97a209f8b6bc0c",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 10,
+        "width": "1",
+        "height": "1",
+        "passthru": false,
+        "label": "9",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "9",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 940,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "53f3398a8b32c909",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 11,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "SMAZAT",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "SMAZAT",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 440,
+        "y": 980,
+        "wires": [
+            [
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "4f990a97e83d29fd",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "9570fe7b9ec90c71",
+        "order": 12,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "DEAKTIVOVAT",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "DEAKTIVOVAT",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1020,
+        "wires": [
+            [
+                "402d821e757cd41c",
+                "acdf897e06763a12"
+            ]
+        ]
+    },
+    {
+        "id": "acdf897e06763a12",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "kontrola zadaneho",
+        "func": "var heslo = \"\";\nif(msg.payload==\"SMAZAT\"){\n    flow.set(\"heslo\",\"\")\n    msg.payload = \"\"\n}\n\nelse if(msg.payload == \"DEAKTIVOVAT\") msg.payload = \"\";\n\nelse{\n    heslo = flow.get(\"heslo\")\n    heslo += msg.payload\n    flow.set(\"heslo\",heslo)\n    msg.payload = heslo;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 800,
+        "wires": [
+            [
+                "5c5bc7be07da62ef"
+            ]
+        ]
+    },
+    {
+        "id": "5c5bc7be07da62ef",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "9570fe7b9ec90c71",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 890,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "402d821e757cd41c",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "odeslani hesla",
+        "func": "var heslo = flow.get(\"heslo\")\nflow.set(\"heslo\",\"\")\nmsg.payload = heslo\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 1020,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "05ef03527e4dfe64",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 750,
+        "y": 660,
+        "wires": [
+            [
+                "9724515b0dbbea12"
+            ]
+        ]
+    },
+    {
+        "id": "9724515b0dbbea12",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "vynulovani hesla pri startu",
+        "func": "flow.set(\"heslo\",\"\")\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "10e214fe9a3e8518",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 9,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Pohyb na 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "PohybNaSenzoru2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 430,
+        "y": 1280,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "3f64c71e3df36d0b",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Pohyb na 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "PohybNaSenzoru1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 430,
+        "y": 1360,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "2acb35fa6594ad65",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Klid na 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "KlidNaSenzoru1",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 440,
+        "y": 1400,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "9ac0eedc458dd752",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Alarm aktivní",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "AlarmAktivni",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 430,
+        "y": 1440,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "0450cc774f4b6626",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Alarm neaktivní",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "AlarmNeaktivni",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1480,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "1a6524503e0fa29a",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Poplach aktivní",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "PoplachAktivni",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1240,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "3f20391a9f6758b6",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Poplach neaktivní",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "PoplachNeaktivni",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 410,
+        "y": 1200,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "0bb22624e3ec7f88",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Část Ladění",
+        "info": "",
+        "x": 390,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "7f272e046b1c428c",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Část Zadání PINU",
+        "info": "",
+        "x": 450,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "cf67fdc48c409eb4",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Skrýt",
+        "func": "    msg.payload = {\n        \"group\": {\n            \"hide\": [\n                \"Alarm_M5Stack_Ladění\"\n                ], \n                \"show\": [\n                    \n                    ]\n        }\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 950,
+        "y": 1600,
+        "wires": [
+            [
+                "88ad3db9df2c4616"
+            ]
+        ]
+    },
+    {
+        "id": "88ad3db9df2c4616",
+        "type": "ui_ui_control",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "events": "all",
+        "x": 1120,
+        "y": 1620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be52485a6f059d8f",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Zobrazit",
+        "func": "    msg.payload = {\n        \"group\": {\n            \"show\": [\n                \"Alarm_M5Stack_Ladění\"\n                ], \n                \"hide\": [\n                    \n                    ]\n        }\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 940,
+        "y": 1640,
+        "wires": [
+            [
+                "88ad3db9df2c4616"
+            ]
+        ]
+    },
+    {
+        "id": "855129bbf38f7976",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "zobrazit ladeni",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 770,
+        "y": 1640,
+        "wires": [
+            [
+                "be52485a6f059d8f"
+            ]
+        ]
+    },
+    {
+        "id": "220d2845b5690548",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "skryt ladeni",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 770,
+        "y": 1600,
+        "wires": [
+            [
+                "cf67fdc48c409eb4"
+            ]
+        ]
+    },
+    {
+        "id": "1e71f6ed800dad2d",
+        "type": "link out",
+        "z": "70ef421ef9557c1e",
+        "name": "prijmout",
+        "links": [
+            "3525737b03ce523c",
+            "daec719c4a0a8038",
+            "2380df53c00155be"
+        ],
+        "x": 1175,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "390f7845e9463041",
+        "type": "mqtt in",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "topic": "kolman",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "92d5cd4809e31d15",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 1060,
+        "y": 120,
+        "wires": [
+            [
+                "1e71f6ed800dad2d"
+            ]
+        ]
+    },
+    {
+        "id": "ad5321e20d5eeb23",
+        "type": "link in",
+        "z": "70ef421ef9557c1e",
+        "name": "odeslat",
+        "links": [
+            "5960bc327d6476bb",
+            "742a012ec98273af",
+            "61c525560a520a5d"
+        ],
+        "x": 1035,
+        "y": 180,
+        "wires": [
+            [
+                "850d3b5a4e644b79"
+            ]
+        ]
+    },
+    {
+        "id": "850d3b5a4e644b79",
+        "type": "mqtt out",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "topic": "kolman",
+        "qos": "",
+        "retain": "",
+        "broker": "92d5cd4809e31d15",
+        "x": 1140,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3525737b03ce523c",
+        "type": "link in",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "links": [
+            "1e71f6ed800dad2d",
+            "de10435b07f8a901"
+        ],
+        "x": 295,
+        "y": 1560,
+        "wires": [
+            [
+                "53a1bfbf7fd418e9"
+            ]
+        ]
+    },
+    {
+        "id": "5960bc327d6476bb",
+        "type": "link out",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "links": [
+            "ad5321e20d5eeb23"
+        ],
+        "x": 935,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "daec719c4a0a8038",
+        "type": "link in",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "links": [
+            "1e71f6ed800dad2d",
+            "de10435b07f8a901"
+        ],
+        "x": 155,
+        "y": 180,
+        "wires": [
+            [
+                "0badf2e4967e4d74",
+                "ebc62990157cd56d",
+                "8cbfd07f4c82bf3d",
+                "967dab290feb74e4",
+                "263955a4f91dc9dd",
+                "fda51c9dba62d328",
+                "a6adfb8832fa45f1"
+            ]
+        ]
+    },
+    {
+        "id": "3b52938dd04e12ab",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Část Status",
+        "info": "",
+        "x": 210,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "075cf64b6e2ee602",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Nastavení MQTT",
+        "info": "",
+        "x": 1100,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "a3b1a673422dec07",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "Mail nebyl odeslan",
+        "props": [
+            {
+                "p": "mail",
+                "v": "PoplachNeaktivni",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 170,
+        "y": 1980,
+        "wires": [
+            [
+                "d368a859ca6c633c"
+            ]
+        ]
+    },
+    {
+        "id": "cd2cacc68bd3ff62",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Mailing",
+        "info": "",
+        "x": 170,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "caa716e8d65a818f",
+        "type": "link out",
+        "z": "70ef421ef9557c1e",
+        "name": "poplach",
+        "links": [
+            "00a6445b4a116ce5"
+        ],
+        "x": 815,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "00a6445b4a116ce5",
+        "type": "link in",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "links": [
+            "caa716e8d65a818f"
+        ],
+        "x": 135,
+        "y": 1900,
+        "wires": [
+            [
+                "d368a859ca6c633c",
+                "1d12878ed9872248"
+            ]
+        ]
+    },
+    {
+        "id": "d368a859ca6c633c",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "aby se odeslal jen jednou",
+        "func": "var stavmailu = flow.get(\"mail\")\n\nif(msg.mail==\"PoplachAktivni\" && stavmailu==\"neodeslano\"){\n    msg.payload=\"odeslat\"\n    flow.set(\"mail\",\"odeslano\");\n}\n\nelse if(msg.mail==\"PoplachNeaktivni\"){\n    msg.payload=\"neodesilat\"\n    flow.set(\"mail\",\"neodeslano\")\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1900,
+        "wires": [
+            [
+                "7e34387089718e9d"
+            ]
+        ]
+    },
+    {
+        "id": "7e34387089718e9d",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "obsah mailu",
+        "func": "if(msg.payload==\"odeslat\"){\n    var time = flow.get(\"cas\");\n    msg.topic=\"Objekt narušen\";\n    msg.payload=\"Váš objekt byl narušen v \" + time;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 630,
+        "y": 1900,
+        "wires": [
+            [
+                "9a52a815868f811a",
+                "a6eede2dd38e3db5",
+                "996370030d963fc0",
+                "8b1183fad3568ef7"
+            ]
+        ]
+    },
+    {
+        "id": "6cc0a498e91feb22",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "Odeslat mail",
+        "props": [
+            {
+                "p": "mail",
+                "v": "PoplachAktivni",
+                "vt": "str"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 190,
+        "y": 1940,
+        "wires": [
+            [
+                "d368a859ca6c633c"
+            ]
+        ]
+    },
+    {
+        "id": "a6eede2dd38e3db5",
+        "type": "debug",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 830,
+        "y": 1940,
+        "wires": []
+    },
+    {
+        "id": "54dacb206aa397e7",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "Aktualizace casu [1s]",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 2040,
+        "wires": [
+            [
+                "c607f5e0d4960420"
+            ]
+        ]
+    },
+    {
+        "id": "c75ed93fcec55206",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "ulozeni casu do flow",
+        "func": "flow.set(\"cas\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 2040,
+        "wires": [
+            [
+                "e7a7a4436ad40a31"
+            ]
+        ]
+    },
+    {
+        "id": "e7a7a4436ad40a31",
+        "type": "debug",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 850,
+        "y": 2040,
+        "wires": []
+    },
+    {
+        "id": "c607f5e0d4960420",
+        "type": "moment",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "topic": "",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/Prague",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "dddd, D. MMMM YYYY, HH:mm:ss",
+        "locale": "cs-CZ",
+        "output": "payload",
+        "outputType": "msg",
+        "outTz": "Europe/Prague",
+        "x": 420,
+        "y": 2040,
+        "wires": [
+            [
+                "c75ed93fcec55206"
+            ]
+        ]
+    },
+    {
+        "id": "35e55f5fbbaf8558",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 11,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Odeslat hlaseni",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "odeslat",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1600,
+        "wires": [
+            [
+                "7e34387089718e9d"
+            ]
+        ]
+    },
+    {
+        "id": "bcd3ea2542820e34",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "PoplachAktivni",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PoplachAktivni",
+        "payloadType": "str",
+        "x": 920,
+        "y": 1240,
+        "wires": [
+            [
+                "de10435b07f8a901"
+            ]
+        ]
+    },
+    {
+        "id": "5cc82a28035ea582",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "PoplachNeaktivni",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "PoplachNeaktivni",
+        "payloadType": "str",
+        "x": 920,
+        "y": 1200,
+        "wires": [
+            [
+                "de10435b07f8a901"
+            ]
+        ]
+    },
+    {
+        "id": "de10435b07f8a901",
+        "type": "link out",
+        "z": "70ef421ef9557c1e",
+        "name": "prijmout",
+        "links": [
+            "3525737b03ce523c",
+            "daec719c4a0a8038",
+            "2380df53c00155be"
+        ],
+        "x": 1075,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "1d12878ed9872248",
+        "type": "debug",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "mail",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 390,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "9a52a815868f811a",
+        "type": "e-mail",
+        "z": "70ef421ef9557c1e",
+        "server": "smtp.seznam.cz",
+        "port": "465",
+        "secure": true,
+        "tls": false,
+        "name": "zabezpecovaci-system@seznam.cz",
+        "dname": "",
+        "x": 900,
+        "y": 1880,
+        "wires": []
+    },
+    {
+        "id": "a6adfb8832fa45f1",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "Aktualizace",
+        "func": "if(msg.payload == \"Test\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "186a3817c0695df0"
+            ]
+        ]
+    },
+    {
+        "id": "186a3817c0695df0",
+        "type": "trigger",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "op1": "<font color=\"#00cc00\"><i class=\"fa fa-circle\"></i></font>",
+        "op2": "<font color=\"#ff0000\"><i class=\"fa fa-circle\"></i></font>",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "1",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 620,
+        "y": 360,
+        "wires": [
+            [
+                "f63bf928a4d57903"
+            ]
+        ]
+    },
+    {
+        "id": "f63bf928a4d57903",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Aktualizace",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 770,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "445f444347c24602",
+        "type": "moment",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "topic": "",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/Prague",
+        "adjAmount": 0,
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "HH:mm:ss",
+        "locale": "cs-CZ",
+        "output": "payload",
+        "outputType": "msg",
+        "outTz": "Europe/Prague",
+        "x": 660,
+        "y": 400,
+        "wires": [
+            [
+                "b65390e7deedce73"
+            ]
+        ]
+    },
+    {
+        "id": "5efeacb8dcdb0958",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "Aktualizace casu [30s]",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payloadType": "date",
+        "x": 430,
+        "y": 400,
+        "wires": [
+            [
+                "445f444347c24602"
+            ]
+        ]
+    },
+    {
+        "id": "2011fa962f416a14",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 10,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Klid na 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "KlidNaSenzoru2",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 440,
+        "y": 1320,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "ba640d77d22f1a89",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Stav systému",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 720,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b65390e7deedce73",
+        "type": "ui_text",
+        "z": "70ef421ef9557c1e",
+        "group": "0b8c16134fa4a9d9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Čas",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 830,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "acc5f2c3b8cca57e",
+        "type": "inject",
+        "z": "70ef421ef9557c1e",
+        "name": "Přímý test mailu",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "odeslat",
+        "payloadType": "str",
+        "x": 440,
+        "y": 1960,
+        "wires": [
+            [
+                "7e34387089718e9d"
+            ]
+        ]
+    },
+    {
+        "id": "d33ce98ed7742daf",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 13,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Test",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Test",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 450,
+        "y": 1640,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "7b87a87e290936d5",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "d1f48a7f779e2ee0",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Aktivovat Alarm",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "AktivovatAlarm",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 420,
+        "y": 1680,
+        "wires": [
+            [
+                "5960bc327d6476bb"
+            ]
+        ]
+    },
+    {
+        "id": "cd11e20b98373ef6",
+        "type": "comment",
+        "z": "70ef421ef9557c1e",
+        "name": "Login",
+        "info": "zabezpecovaci-system@seznam.cz\nbezpecnost321",
+        "x": 870,
+        "y": 1840,
+        "wires": []
+    },
+    {
+        "id": "996370030d963fc0",
+        "type": "ui_toast",
+        "z": "70ef421ef9557c1e",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "Cancel",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 830,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8b1183fad3568ef7",
+        "type": "function",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "func": "msg.payload = \"Objekt narušen!\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 1940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9a230d940a95316e",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "a0f928e78e9f5bd7",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Zobrazit",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 780,
+        "y": 1680,
+        "wires": [
+            [
+                "be52485a6f059d8f"
+            ]
+        ]
+    },
+    {
+        "id": "7b0e620c6b4046b1",
+        "type": "ui_button",
+        "z": "70ef421ef9557c1e",
+        "name": "",
+        "group": "a0f928e78e9f5bd7",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Skrýt",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 790,
+        "y": 1560,
+        "wires": [
+            [
+                "cf67fdc48c409eb4"
+            ]
+        ]
+    },
+    {
+        "id": "0b8c16134fa4a9d9",
+        "type": "ui_group",
+        "name": "Status",
+        "tab": "4e0022cf1291a764",
+        "order": 1,
+        "disp": true,
+        "width": "4",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "27e57e1ea4f0f3cd",
+        "type": "ui_group",
+        "name": "System",
+        "tab": "4e0022cf1291a764",
+        "order": 4,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d1f48a7f779e2ee0",
+        "type": "ui_group",
+        "name": "Ladění",
+        "tab": "4e0022cf1291a764",
+        "order": 5,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9570fe7b9ec90c71",
+        "type": "ui_group",
+        "name": "Klavesnice",
+        "tab": "4e0022cf1291a764",
+        "order": 3,
+        "disp": true,
+        "width": "3",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "92d5cd4809e31d15",
+        "type": "mqtt-broker",
+        "name": "Hive MQTT",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "dashboard-kolman",
+        "autoConnect": true,
+        "usetls": false,
+        "compatmode": false,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "a0f928e78e9f5bd7",
+        "type": "ui_group",
+        "name": "Ladění",
+        "tab": "66bdef78d6a2d39d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4e0022cf1291a764",
+        "type": "ui_tab",
+        "name": "Alarm M5Stack",
+        "icon": "security",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "66bdef78d6a2d39d",
+        "type": "ui_tab",
+        "name": "Settings",
+        "icon": "settings",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
